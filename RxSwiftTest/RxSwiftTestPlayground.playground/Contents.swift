@@ -266,6 +266,7 @@ example("observeOn") {
 }
 */
 
+
 example("subscribeOn and observeOn") {
     let queue1 = DispatchQueue.global(qos: .default)
     let queue2 = DispatchQueue.global(qos: .default)
