@@ -204,6 +204,7 @@ example("ReplaySubject") {
 }
 */
 
+/*
 example("Variables") {
     let disposeBug = DisposeBag()
     let variable = Variable("A")
@@ -214,4 +215,20 @@ example("Variables") {
     
     variable.value = "B"
 }
+*/
 
+//MARK: Side effect
+
+example("SideEffect") {
+    let disposeBug = DisposeBag()
+    let seq  = [0, 32, 100, -40]
+    let tempSeq = Observable.from(seq)
+    
+    tempSeq.do(onNext: {
+        print("\($0)F = ", terminator: "")
+    }).map({
+        Double($0 - 32) * 5 / 9.0
+    }).subscribe(onNext: {
+        print(String(format: "%.1f", $0))
+    }).addDisposableTo(disposeBug)
+}
